@@ -13,27 +13,29 @@ namespace LibraryAPI.Presentation.Controllers
     {
         private readonly IBookService _bookService;
         private readonly IMapper _mapper;
+        private readonly ICSVGenerator _csvGenerator;
 
-        public BooksController(IMapper mapper, IBookService bookService)
+        public BooksController(IMapper mapper, IBookService bookService, ICSVGenerator csvGenerator)
         {
             _bookService = bookService;
             _mapper = mapper;
+            _csvGenerator = csvGenerator;
         }
 
         [HttpGet]
-        public async Task<IReadOnlyCollection<BookModel>> GetAll([FromQuery]bool availableOnly, 
-                                                                 [FromQuery]SortOrderModel sortOrder)
+        public async Task<IReadOnlyCollection<BookModel>> GetAll([FromQuery] bool availableOnly,
+                                                                 [FromQuery] SortOrderModel sortOrder)
         {
-            SortOrderDTO sortOrderDTO = 
+            SortOrderDTO sortOrderDTO =
                 _mapper.Map<SortOrderModel, SortOrderDTO>(sortOrder);
 
             IReadOnlyCollection<BookDTO> booksDTO = await _bookService.GetAll(availableOnly, sortOrderDTO);
 
-            IReadOnlyCollection<BookModel> models = 
+            IReadOnlyCollection<BookModel> models =
                 _mapper.Map<IReadOnlyCollection<BookDTO>, IReadOnlyCollection<BookModel>>(booksDTO);
 
             return models;
-        } 
+        }
 
         [HttpGet("{id}")]
         public async Task<BookModel> GetById([FromRoute] int id)
@@ -45,7 +47,7 @@ namespace LibraryAPI.Presentation.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddBook([FromBody]CreateBookModel createBook)
+        public async Task<IActionResult> AddBook([FromBody] CreateBookModel createBook)
         {
             CreateBookDTO createBookDto = _mapper.Map<CreateBookModel, CreateBookDTO>(createBook);
 
@@ -67,7 +69,7 @@ namespace LibraryAPI.Presentation.Controllers
 
         [HttpPost("{id}/archive")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ArchiveBook([FromRoute]int id)
+        public async Task<IActionResult> ArchiveBook([FromRoute] int id)
         {
             await _bookService.ArchiveBook(id);
 
@@ -90,6 +92,14 @@ namespace LibraryAPI.Presentation.Controllers
             await _bookService.UnreserveBook(id);
 
             return NoContent();
+        }
+
+        [HttpPost("csv")]
+        public async Task<IActionResult> GetCSV()
+        {
+            var csvStream = await _csvGenerator.GenerateBooksCSV();
+
+            return File(csvStream, "text/csv", "books.csv");
         }
     }
 }

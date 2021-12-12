@@ -50,6 +50,7 @@ namespace LibraryAPI.Host
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IBookService, BooksService>();
+            services.AddScoped<ICSVGenerator, CSVGenerator>();
 
             // Add mapper
             services.AddAutoMapper(config => config.AddMaps(typeof(BusinessLogic.Mapping.AuthProfile).Assembly,

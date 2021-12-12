@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LibraryAPI.BusinessLogic.DTOs;
+using LibraryAPI.BusinessLogic.Services;
 using LibraryAPI.DataAccess.Entities;
 using LibraryAPI.DataAccess.Queries;
 
@@ -15,6 +16,7 @@ namespace LibraryAPI.BusinessLogic.Mapping
             CreateMap<SortOrderDTO, SortOrder>();
             CreateMap<CreateBookDTO, Book>();
             CreateMap<UpdateBookDTO, Book>();
+            CreateMap<Book, CSVBook>();
         }
     }
 }
