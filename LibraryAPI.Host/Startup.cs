@@ -1,5 +1,6 @@
 using LibraryAPI.BusinessLogic.Contracts;
 using LibraryAPI.BusinessLogic.Options;
+using LibraryAPI.BusinessLogic.Services;
 using LibraryAPI.BusinessLogic.Services.Auth;
 using LibraryAPI.DataAccess;
 using LibraryAPI.DataAccess.Contracts;
@@ -48,6 +49,7 @@ namespace LibraryAPI.Host
             services.AddScoped<ITokenReader, BusinessLogic.Services.Auth.TokenReader>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IBookService, BooksService>();
 
             // Add mapper
             services.AddAutoMapper(config => config.AddMaps(typeof(BusinessLogic.Mapping.AuthProfile).Assembly,
@@ -55,7 +57,9 @@ namespace LibraryAPI.Host
 
             services.AddControllers()
                     .AddApplicationPart(typeof(AuthController).Assembly)
-                    .AddControllersAsServices();
+                    .AddControllersAsServices()
+                    .AddNewtonsoftJson()
+                    .AddMvcOptions(options => options.Filters.Add<ExceptionFilter>());
 
             // Add token
             services.AddAuthentication(options =>

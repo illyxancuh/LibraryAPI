@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.Host", "LibraryAPI.Host\LibraryAPI.Host.csproj", "{1A9F2683-E933-4302-9F9F-8885F38FA033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAPI.Host", "LibraryAPI.Host\LibraryAPI.Host.csproj", "{1A9F2683-E933-4302-9F9F-8885F38FA033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.Presentation", "LibraryAPI.Presentation\LibraryAPI.Presentation.csproj", "{F2604267-B764-4317-9762-357A3252B30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAPI.Presentation", "LibraryAPI.Presentation\LibraryAPI.Presentation.csproj", "{F2604267-B764-4317-9762-357A3252B30D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.BusinessLogic", "LibraryAPI.BusinessLogic\LibraryAPI.BusinessLogic.csproj", "{7960E983-55FA-4F9E-BBDD-AEDB199861B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAPI.BusinessLogic", "LibraryAPI.BusinessLogic\LibraryAPI.BusinessLogic.csproj", "{7960E983-55FA-4F9E-BBDD-AEDB199861B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.DataAccess", "LibraryAPI.DataAccess\LibraryAPI.DataAccess.csproj", "{7F5F570E-DF3C-4B48-AF80-F82BFAC05168}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAPI.DataAccess", "LibraryAPI.DataAccess\LibraryAPI.DataAccess.csproj", "{7F5F570E-DF3C-4B48-AF80-F82BFAC05168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI.Shared", "LibraryAPI.Shared\LibraryAPI.Shared.csproj", "{CBD35539-B765-492B-94A9-614DFF7EAAD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7F5F570E-DF3C-4B48-AF80-F82BFAC05168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F5F570E-DF3C-4B48-AF80-F82BFAC05168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F5F570E-DF3C-4B48-AF80-F82BFAC05168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD35539-B765-492B-94A9-614DFF7EAAD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD35539-B765-492B-94A9-614DFF7EAAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD35539-B765-492B-94A9-614DFF7EAAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD35539-B765-492B-94A9-614DFF7EAAD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,30 @@
+﻿namespace LibraryAPI.DataAccess.Entities
+{
+    public enum Genre
+    {
+        Fantasy,
+        Adventure,
+        Romance,
+        Contemporary,
+        Dystopian,
+        Mystery,
+        Horror,
+        Thriller,
+        Paranormal,
+        Historicalfiction,
+        ScienceFiction,
+        Memoir,
+        Cooking,
+        Art,
+        SelfhelpOrPersonal,
+        Development,
+        Motivational,
+        Health,
+        History,
+        Travel,
+        GuideOrHowto,
+        FamiliesAndRelationships,
+        Humor,
+        Childrens,
+    }
+}

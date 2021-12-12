@@ -1,4 +1,5 @@
-﻿using LibraryAPI.DataAccess.Contracts;
+﻿using LibraryAPI.BusinessLogic.Exceptions;
+using LibraryAPI.DataAccess.Contracts;
 using LibraryAPI.DataAccess.EFCore;
 using LibraryAPI.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,8 @@ namespace LibraryAPI.DataAccess.Repositories
             return await _dataBaseContext.Users
                 .AsNoTracking()
                 .Include(user => user.Role)
-                .SingleOrDefaultAsync(user => user.Email == email);
+                .SingleOrDefaultAsync(user => user.Email == email)
+                ?? throw new NotFoundException($"User with E-mail {email} doesn't exist.");
         }
 
         public async Task<bool> IsEmailExist(string email)
@@ -28,7 +30,8 @@ namespace LibraryAPI.DataAccess.Repositories
 
         public async Task<Role> GetRoleByName(string name)
         {
-            return await _dataBaseContext.Roles.SingleOrDefaultAsync(role => role.Name == name);
+            return await _dataBaseContext.Roles.SingleOrDefaultAsync(role => role.Name == name)
+                ?? throw new NotFoundException($"Role with name {name} doesn't exist."); ;
         }
     }
 }
