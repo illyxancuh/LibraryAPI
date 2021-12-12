@@ -62,6 +62,8 @@ namespace LibraryAPI.Host
                     .AddNewtonsoftJson()
                     .AddMvcOptions(options => options.Filters.Add<ExceptionFilter>());
 
+            services.AddSwaggerGen();
+
             // Add token
             services.AddAuthentication(options =>
             {
@@ -100,6 +102,13 @@ namespace LibraryAPI.Host
                     builder.AllowAnyOrigin();
                     builder.AllowAnyHeader();
                     builder.AllowAnyMethod();
+                });
+
+                app.UseSwagger();
+                app.UseSwaggerUI(options=> 
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty; 
                 });
             }
 
