@@ -6,6 +6,8 @@ namespace LibraryAPI.DataAccess.Contracts
     {
         public IUsersRepository Users { get; }
 
+        public IBooksRepository Books { get; }
+
         public Task SaveChangesAsync();
     }
 }

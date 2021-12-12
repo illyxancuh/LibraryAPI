@@ -9,6 +9,7 @@ namespace LibraryAPI.DataAccess
     {
         private readonly DataBaseContext _dataBaseContext;
         private IUsersRepository _users;
+        private IBooksRepository _books;
 
         public UnitOfWork(DataBaseContext dataBaseContext)
         {
@@ -25,6 +26,19 @@ namespace LibraryAPI.DataAccess
                 }
 
                 return _users;
+            }
+        }
+
+        public IBooksRepository Books
+        {
+            get
+            {
+                if (_books == null)
+                {
+                    _books = new BooksRepository(_dataBaseContext);
+                }
+
+                return _books;
             }
         }
 

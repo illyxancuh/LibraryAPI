@@ -9,9 +9,17 @@ namespace LibraryAPI.DataAccess.EFCore
 
         public DbSet<Role> Roles { get; set; }
 
+        public DbSet<Book> Books { get; set; }
+
         public DataBaseContext(DbContextOptions contextOptions)
                     : base(contextOptions)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Book>().HasQueryFilter(book => !book.IsArchived);
         }
     }
 }

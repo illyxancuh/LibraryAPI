@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/{controller}")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class AuthController : ControllerBase
+    public class AuthController : APIControllerBase
     {
         private readonly IAuthService _authService;
         private readonly IMapper _mapper;
